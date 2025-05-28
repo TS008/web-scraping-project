@@ -61,6 +61,113 @@ python workday_simple_api.py --delay 5.0
 python workday_simple_api.py --max-retries 5
 ```
 
+### simple_analysis.py
+
+这是一个轻量级的数据分析脚本，用于分析爬虫抓取的职位数据，无需安装 pandas 等重型依赖。
+
+#### 主要功能
+
+- **自动文件检测**: 自动找到 output 目录中最新的 CSV 文件进行分析
+- **基础统计**: 提供职位总数、公司信息、数据完整性等基础统计
+- **地点分析**: 统计各工作地点的职位数量，显示热门城市排行
+- **职位分类**: 基于关键词自动分类职位类型（销售、管理、工程等）
+- **数据质量检查**: 检查各字段的数据完整性和覆盖率
+- **发布日期分析**: 统计职位发布时间分布
+
+#### 分析内容
+
+1. **数据概览**:
+   - 总职位数量
+   - 抓取时间
+   - 涉及公司
+
+2. **地理分布**:
+   - 独特工作地点数量
+   - 前10个热门城市及职位数
+
+3. **职位信息**:
+   - 示例职位标题
+   - 职位URL覆盖率
+   - 发布日期分布
+
+4. **数据完整性**:
+   - 各字段的数据覆盖率
+   - 缺失数据统计
+
+5. **职位分类**:
+   - 基于关键词的自动分类
+   - 各类别职位数量统计
+
+#### 使用方法
+
+```bash
+# 分析最新的抓取数据
+python simple_analysis.py
+```
+
+#### 输出示例
+
+```
+📄 Analyzing: output/pultegroup_jobs_simple_20250524_140443.csv
+
+📊 Job Data Analysis
+==================================================
+📈 Total jobs scraped: 217
+📅 Data scraped on: 2025-05-24
+🏢 Companies: Pultegroup
+📍 Unique locations: 51
+
+🔝 Top 10 locations:
+   Atlanta, GA: 13 jobs
+   Charlotte, NC: 12 jobs
+   Florence, SC: 11 jobs
+   Houston, TX: 10 jobs
+   Alpharetta, GA: 9 jobs
+   Coppell, TX: 8 jobs
+   Brentwood, TN: 7 jobs
+   Carmel, IN: 6 jobs
+   Myrtle Beach, SC: 6 jobs
+   West Palm Beach, FL: 6 jobs
+
+💼 Sample job titles:
+   1. Land Project Manager - Savannah, GA
+   2. Mortgage Financing Advisor - (Pulte Mortgage)
+   3. Sales Administrator - Bluffton, SC
+   4. General Sales Manager - Hilton Head, SC
+   5. Sales Consultant - Bluffton/Hilton Head, SC
+
+🔗 Jobs with URLs: 217/217 (100.0%)
+📅 Jobs with posting dates: 217/217 (100.0%)
+
+📆 Posting date distribution:
+   Posted Today: 9 jobs
+   Posted Yesterday: 4 jobs
+   Posted 2 Days Ago: 2 jobs
+   Posted 3 Days Ago: 4 jobs
+   Posted 4 Days Ago: 6 jobs
+
+📋 Data completeness:
+   job_id: 217/217 (100.0%)
+   title: 217/217 (100.0%)
+   location: 217/217 (100.0%)
+   posting_date: 217/217 (100.0%)
+   url: 217/217 (100.0%)
+   company: 217/217 (100.0%)
+   scraped_at: 217/217 (100.0%)
+
+🏷️ Job categories (based on titles):
+   Sales: 65 jobs
+   Management: 58 jobs
+   Construction: 32 jobs
+   Finance: 28 jobs
+   Administrative: 15 jobs
+   Marketing: 8 jobs
+   Engineering: 3 jobs
+
+✅ Analysis complete!
+📁 Full data available in: output/pultegroup_jobs_simple_20250524_140443.csv
+```
+
 ## 输出结果
 
 ### CSV 文件格式
